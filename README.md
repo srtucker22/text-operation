@@ -1,4 +1,4 @@
-# text-operation [![Npm version](https://img.shields.io/npm/v/graphql-primitive.svg)](https://www.npmjs.com/package/text-operation)
+# text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation)
 
 ## A Set of classes for Rich Text Operations using in Operational Transformation
 
