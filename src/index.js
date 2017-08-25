@@ -1,2 +1,7 @@
-export { default as Cursor } from './cursor.utils';
-export { default } from './text-operation.utils';
+import Cursor from './cursor.utils';
+import TextOperation from './text-operation.utils';
+
+module.exports = {
+  Cursor,
+  TextOperation,
+};

@@ -88,29 +88,67 @@ exports.default = assert;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _cursor = __webpack_require__(2);
 
-Object.defineProperty(exports, 'Cursor', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_cursor).default;
-  }
-});
+var _cursor2 = _interopRequireDefault(_cursor);
 
 var _textOperation = __webpack_require__(3);
 
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_textOperation).default;
-  }
-});
+var _textOperation2 = _interopRequireDefault(_textOperation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var testString = 'I am a test string';
+
+var o = new _textOperation2.default();
+o.retain(2);
+o.delete(2);
+o.insert('was');
+o.retain(14);
+o.insert('!');
+
+// apply operations to a string
+console.log(o.apply(testString)); // I was a test string!
+
+// composition example
+var o2 = new _textOperation2.default();
+o2.retain(2);
+o2.delete(3);
+o2.insert('still am');
+o2.retain(15);
+o2.insert('!!');
+
+var composed = o.compose(o2);
+console.log(composed);
+// TextOperation {
+//   ops:
+//    [ TextOp { type: 'retain', chars: 2, text: null, attributes: {} },
+//      TextOp { type: 'insert', chars: null, text: 'still am', attributes: {} },
+//      TextOp { type: 'delete', chars: 2, text: null, attributes: null },
+//      TextOp { type: 'retain', chars: 14, text: null, attributes: {} },
+//      TextOp { type: 'insert', chars: null, text: '!!!!', attributes: {} } ],
+//   baseLength: 18,
+//   targetLength: 28 }
+
+console.log(composed.apply(testString)); // I still am a test string!!!
+
+// transformation example
+var simpleString = 'abcdef';
+
+var op1 = new _textOperation2.default();
+var op2 = new _textOperation2.default();
+
+op1.retain(6).insert('ghijk');
+op2.retain(3).delete(3);
+var transformed = op1.transform(op2);
+console.log(transformed[0].toJSON(), transformed[1].toJSON()); // [ 3, 'ghijk' ] [ 3, -3, 5 ]
+
+console.log(transformed[1].apply(op1.apply(simpleString))); // abcghijk
+
+module.exports = {
+  Cursor: _cursor2.default,
+  TextOperation: _textOperation2.default
+};
 
 /***/ }),
 /* 2 */
