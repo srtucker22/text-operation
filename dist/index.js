@@ -88,6 +88,11 @@ exports.default = assert;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TextOperation = exports.Cursor = undefined;
+
 var _cursor = __webpack_require__(2);
 
 var _cursor2 = _interopRequireDefault(_cursor);
@@ -98,10 +103,8 @@ var _textOperation2 = _interopRequireDefault(_textOperation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = {
-  Cursor: _cursor2.default,
-  TextOperation: _textOperation2.default
-};
+exports.Cursor = _cursor2.default;
+exports.TextOperation = _textOperation2.default;
 
 /***/ }),
 /* 2 */
