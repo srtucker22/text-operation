@@ -25,7 +25,7 @@ The OT operations we allow are `retain` `insert` `delete`.
 A single `TextOperation` will contain one or many of these operations, but must traverse exactly entire string for which they will be applied:
 
 ```javascript
-import TextOperation from 'text-operation';
+import { TextOperation } from 'text-operation';
 
 const testString = 'I am a test string';
 
