@@ -1,5 +1,7 @@
 # text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/srtucker22/text-operation.svg)](https://greenkeeper.io/)
+
 ## A Set of classes for Rich Text Operations using in Operational Transformation
 
 * [Overview](#overview)
