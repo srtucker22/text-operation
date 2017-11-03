@@ -1,4 +1,4 @@
-# text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation)
+# text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation) [![Build Status](https://travis-ci.org/srtucker22/text-operation.svg?branch=master)](https://travis-ci.org/srtucker22/text-operation) [![Coverage Status](https://coveralls.io/repos/github/srtucker22/text-operation/badge.svg?branch=master)](https://coveralls.io/github/srtucker22/text-operation?branch=master)
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/srtucker22/text-operation.svg)](https://greenkeeper.io/)
 
@@ -10,17 +10,20 @@
 * [Contributing](#contributing)
 * [Licence](#licence)
 
-# Overview
+## Overview
+
 This package is heavily based on [firepad](https://github.com/firebase/firepad)'s OT operations, which were in turn based on [ot.js](https://github.com/Operational-Transformation/ot.js/). Yay OSS!
 
 This package is a conversion of their masterful work into ES6, and turned into an easy to use module.
 
-# Installation
-```
+## Installation
+
+```bash
 yarn add text-operation
 ```
 
-# Usage
+## Usage
+
 The easiest way to get familiar with the `TextOperation` class is to check out [text-operation.utils.spec.js](test/text-operation.utils.spec.js)
 
 The OT operations we allow are `retain` `insert` `delete`.
@@ -77,10 +80,12 @@ console.log(transformed[0].toJSON(), transformed[1].toJSON()); // [ 3, 'ghijk' ]
 console.log(transformed[1].apply(op1.apply(simpleString))); // abcghijk
 ```
 
-# Contributing
+## Contributing
+
 This project welcomes code contributions, bug reports and feature requests. Please see the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md) if you are interested in contributing.
 
-# License
+## License
+
 MIT License
 
 Copyright (c) 2017 Simon Tucker
