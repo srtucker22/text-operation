@@ -1,5 +1,7 @@
 # text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation) [![Build Status](https://travis-ci.org/srtucker22/text-operation.svg?branch=master)](https://travis-ci.org/srtucker22/text-operation) [![Coverage Status](https://coveralls.io/repos/github/srtucker22/text-operation/badge.svg?branch=master)](https://coveralls.io/github/srtucker22/text-operation?branch=master)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/srtucker22/text-operation.svg)](https://greenkeeper.io/)
+
 ## A Set of classes for Rich Text Operations using in Operational Transformation
 
 * [Overview](#overview)
