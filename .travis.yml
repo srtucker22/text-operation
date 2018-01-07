@@ -19,9 +19,6 @@ install:
   - yarn
   - yarn global add coveralls
 
-before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
-
 script:
   # remove unused node modules from cache
   - npm run prepublish
