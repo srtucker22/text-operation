@@ -22,7 +22,7 @@
     "babel-preset-stage-2": "6.24.1",
     "eslint": "4.17.0",
     "eslint-config-airbnb-base": "12.1.0",
-    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-import": "2.9.0",
     "jest": "21.2.1",
     "regenerator-runtime": "0.11.1",
     "webpack": "3.11.0"
