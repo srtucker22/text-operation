@@ -1,6 +1,6 @@
 {
   "name": "text-operation",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "text operation classes for rich text operational transformation",
   "main": "./dist/index.js",
   "license": "MIT",
