@@ -17,5 +17,4 @@ install:
 
 script:
   # remove unused node modules from cache
-  - npm run prepublish
   - npm run coverage && cat ./coverage/lcov.info | coveralls
