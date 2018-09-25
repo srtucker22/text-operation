@@ -6,5 +6,7 @@ module.exports = {
     },
     rules: {
         "no-bitwise": 0,
+        "no-plusplus": 0,
+        "prefer-destructuring": 1,
     }
 };

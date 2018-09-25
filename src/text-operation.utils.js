@@ -75,11 +75,11 @@ export default class TextOperation {
       // This makes all operations that have the same effect when applied to
       // a document of the right length equal in respect to the `equals` method.
 
-      // insert("something"), delete(3), insert("else") --> insert("somethingelse"), delete(3) 
+      // insert("something"), delete(3), insert("else") --> insert("somethingelse"), delete(3)
       if (prevPrevOp && prevPrevOp.isInsert() && prevPrevOp.attributesEqual(attributes)) {
         prevPrevOp.text += str;
       } else {
-        // delete(3), insert("something") --> insert("something"), delete(3) 
+        // delete(3), insert("something") --> insert("something"), delete(3)
         this.ops[this.ops.length - 1] = new TextOp('insert', str, attributes);
         this.ops.push(prevOp);
       }
@@ -111,8 +111,8 @@ export default class TextOperation {
   }
 
   isNoop() {
-    return this.ops.length === 0 ||
-      (this.ops.length === 1 && (this.ops[0].isRetain() && this.ops[0].hasEmptyAttributes()));
+    return this.ops.length === 0
+      || (this.ops.length === 1 && (this.ops[0].isRetain() && this.ops[0].hasEmptyAttributes()));
   }
 
   clone() {
@@ -135,9 +135,12 @@ export default class TextOperation {
     return this.ops.map((op) => {
       if (op.isRetain()) {
         return `retain ${op.chars}`;
-      } else if (op.isInsert()) {
+      }
+
+      if (op.isInsert()) {
         return `insert '${op.text}'`;
       }
+
       return `delete ${op.chars}`;
     }).join(', ');
   }
@@ -519,8 +522,8 @@ export default class TextOperation {
     for (attr in attributes2) { allAttrs[attr] = true; }
 
     for (attr in allAttrs) {
-      let attr1 = attributes1[attr],
-        attr2 = attributes2[attr];
+      const attr1 = attributes1[attr];
+      const attr2 = attributes2[attr];
       assert(attr1 != null || attr2 != null);
       if (attr1 == null) {
         // Only modified by attributes2; keep it.

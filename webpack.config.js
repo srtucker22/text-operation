@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   target: 'node',
   output: {
@@ -9,9 +10,9 @@ module.exports = {
     libraryTarget: 'umd',
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loader: 'babel-loader',
+      use: 'babel-loader',
       exclude: /node_modules/,
     }],
   },

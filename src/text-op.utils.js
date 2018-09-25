@@ -24,14 +24,16 @@ export default class TextOp {
   }
 
   isInsert() { return this.type === 'insert'; }
+
   isDelete() { return this.type === 'delete'; }
+
   isRetain() { return this.type === 'retain'; }
 
   equals(other) {
-    return (this.type === other.type &&
-      this.text === other.text &&
-      this.chars === other.chars &&
-      this.attributesEqual(other.attributes));
+    return (this.type === other.type
+      && this.text === other.text
+      && this.chars === other.chars
+      && this.attributesEqual(other.attributes));
   }
 
   attributesEqual(otherAttributes) {
@@ -40,8 +42,8 @@ export default class TextOp {
     }
 
     return Object.keys(this.attributes)
-      .every(attr => this.attributes[attr] === otherAttributes[attr]) &&
-      Object.keys(otherAttributes)
+      .every(attr => this.attributes[attr] === otherAttributes[attr])
+      && Object.keys(otherAttributes)
         .every(attr => this.attributes[attr] === otherAttributes[attr]);
   }
 
