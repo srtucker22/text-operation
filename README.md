@@ -1,6 +1,6 @@
 # text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation) [![Build Status](https://travis-ci.org/srtucker22/text-operation.svg?branch=master)](https://travis-ci.org/srtucker22/text-operation) [![Coverage Status](https://coveralls.io/repos/github/srtucker22/text-operation/badge.svg?branch=master)](https://coveralls.io/github/srtucker22/text-operation?branch=master)
 
-## A Set of classes for Rich Text Operations using in Operational Transformation
+## Classes for Rich Text Operations using Operational Transformation
 
 * [Overview](#overview)
 * [Installing](#installing)
@@ -17,7 +17,7 @@ This package is a conversion of their masterful work into ES6, and turned into a
 ## Installation
 
 ```bash
-yarn add text-operation
+npm i -S text-operation
 ```
 
 ## Usage
@@ -86,7 +86,7 @@ This project welcomes code contributions, bug reports and feature requests. Plea
 
 MIT License
 
-Copyright (c) 2017 Simon Tucker
+Copyright (c) 2019 Simon Tucker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
