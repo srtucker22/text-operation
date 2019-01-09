@@ -2,6 +2,11 @@
   "name": "text-operation",
   "version": "1.1.0",
   "description": "text operation classes for rich text operational transformation",
+  "keywords": [
+    "ot",
+    "text-operation",
+    "operational-transformation",
+  ],
   "main": "./dist/index.js",
   "license": "MIT",
   "repository": {
