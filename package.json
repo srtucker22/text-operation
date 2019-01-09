@@ -5,7 +5,7 @@
   "keywords": [
     "ot",
     "text-operation",
-    "operational-transformation",
+    "operational-transformation"
   ],
   "main": "./dist/index.js",
   "license": "MIT",
