@@ -22,9 +22,9 @@
   },
   "author": "Simon Tucker",
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/plugin-proposal-class-properties": "7.4.4",
-    "@babel/preset-env": "7.4.4",
+    "@babel/core": "7.5.4",
+    "@babel/plugin-proposal-class-properties": "7.5.0",
+    "@babel/preset-env": "7.5.4",
     "@babel/preset-stage-2": "7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.2",
