@@ -35,7 +35,7 @@
     "eslint-plugin-import": "2.18.0",
     "jest": "24.8.0",
     "regenerator-runtime": "0.13.3",
-    "webpack": "4.41.3",
+    "webpack": "4.41.4",
     "webpack-cli": "3.3.10"
   }
 }
