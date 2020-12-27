@@ -1,103 +1,83 @@
-# TSDX User Guide
+# text-operation [![Npm version](https://img.shields.io/npm/v/text-operation.svg)](https://www.npmjs.com/package/text-operation) [![Build Status](https://travis-ci.org/srtucker22/text-operation.svg?branch=master)](https://travis-ci.org/srtucker22/text-operation) [![Coverage Status](https://coveralls.io/repos/github/srtucker22/text-operation/badge.svg?branch=master)](https://coveralls.io/github/srtucker22/text-operation?branch=master)
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+## Classes for Rich Text Operations using Operational Transformation
 
-> This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
+* [Overview](#overview)
+* [Installing](#installing)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Licence](#licence)
 
-> If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
+## Overview
 
-## Commands
+This package is heavily based on [firepad](https://github.com/firebase/firepad)'s OT operations, which were in turn based on [ot.js](https://github.com/Operational-Transformation/ot.js/). Yay OSS!
 
-TSDX scaffolds your new library inside `/src`.
+This package is a conversion of their masterful work into Typescript + ES6, and turned into an easy to use module.
 
-To run TSDX, use:
+## Installation
 
 ```bash
-npm start # or yarn start
+npm i -S text-operation
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+## Usage
 
-To do a one-off build, use `npm run build` or `yarn build`.
+The easiest way to get familiar with the `TextOperation` class is to check out [text-operation.utils.spec.js](test/text-operation.utils.spec.js)
 
-To run tests, use `npm test` or `yarn test`.
+The OT operations we allow are `retain` `insert` `delete`.
+A single `TextOperation` will contain one or many of these operations, but must traverse exactly entire string for which they will be applied:
 
-## Configuration
+```javascript
+import { TextOperation } from 'text-operation';
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+const testString = 'I am a test string';
 
-### Jest
+const o = new TextOperation();
+o.retain(2);
+o.delete(2);
+o.insert('was');
+o.retain(14);
+o.insert('!');
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+// apply operations to a string
+console.log(o.apply(testString)); // I was a test string!
 
-### Bundle Analysis
+// composition example
+const o2 = new TextOperation();
+o2.retain(2);
+o2.delete(3);
+o2.insert('still am');
+o2.retain(15);
+o2.insert('!!');
 
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
+const composed = o.compose(o2);
+console.log(composed);
+// TextOperation {
+//   ops:
+//    [ TextOp { type: 'retain', chars: 2, text: null, attributes: {} },
+//      TextOp { type: 'insert', chars: null, text: 'still am', attributes: {} },
+//      TextOp { type: 'delete', chars: 2, text: null, attributes: null },
+//      TextOp { type: 'retain', chars: 14, text: null, attributes: {} },
+//      TextOp { type: 'insert', chars: null, text: '!!!!', attributes: {} } ],
+//   baseLength: 18,
+//   targetLength: 28 }
 
-#### Setup Files
+console.log(composed.apply(testString)); // I still am a test string!!!
 
-This is the folder structure we set up for you:
+// transformation example
+const simpleString = 'abcdef';
 
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
+const op1 = new TextOperation();
+const op2 = new TextOperation();
+
+op1.retain(6).insert('ghijk');
+op2.retain(3).delete(3);
+const transformed = op1.transform(op2);
+console.log(transformed[0].toJSON(), transformed[1].toJSON()); // [ 3, 'ghijk' ] [ 3, -3, 5 ]
+
+console.log(transformed[1].apply(op1.apply(simpleString))); // abcghijk
 ```
 
-### Rollup
+## Contributing
 
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
-```
-
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
-
-## Module Formats
-
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
+This project welcomes code contributions, bug reports and feature requests. Please see the guidelines in [CONTRIBUTING.md](CONTRIBUTING.md) if you are interested in contributing.

@@ -7,11 +7,11 @@ export enum TextOpType {
 }
 
 export default class TextOp {
-  type: TextOpType;
+  type: 'insert' | 'delete' | 'retain';
   chars: number | null;
   text: string | null;
   attributes: Record<string, any>;
-  constructor(type: TextOpType, ...args: any) {
+  constructor(type: TextOp['type'], ...args: any) {
     this.type = type;
     this.chars = null;
     this.text = null;
@@ -71,7 +71,7 @@ export default class TextOp {
 
   hasEmptyAttributes() {
     let empty = true;
-    for (const attr in this.attributes) {
+    for (const _ in this.attributes) {
       empty = false;
       break;
     }

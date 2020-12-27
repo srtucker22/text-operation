@@ -5,6 +5,7 @@ export default class TextOperation {
   ops: TextOp[];
   baseLength: number;
   targetLength: number;
+  meta?: Record<string, any>;
 
   constructor() {
     // When an operation is applied to an input string, you can think of this as
@@ -143,7 +144,8 @@ export default class TextOperation {
     return (
       this.ops.length === 0 ||
       (this.ops.length === 1 &&
-        this.ops[0].isRetain() && this.ops[0].hasEmptyAttributes())
+        this.ops[0].isRetain() &&
+        this.ops[0].hasEmptyAttributes())
     );
   }
 
@@ -199,24 +201,26 @@ export default class TextOperation {
     return ops;
   }
 
-  static fromJSON(ops: (number | string | object)[]) {
+  static fromJSON(ops: (number | string | object | null)[]) {
     const o = new TextOperation();
     for (let i = 0, l = ops.length; i < l; i++) {
       let op = ops[i];
       let attributes = {};
-      if (typeof op === 'object') {
+      if (!!op && typeof op === 'object') {
         attributes = op;
         i++;
         op = ops[i];
-      } else if (typeof op === 'number') {
+      }
+      
+      if (typeof op === 'number') {
         if (op > 0) {
           o.retain(op, attributes);
         } else {
           o.delete(-op);
         }
       } else {
-        assert(typeof op === 'string');
-        o.insert(op, attributes);
+        assert(!!op && typeof op === 'string');
+        o.insert(op as string, attributes);
       }
     }
     return o;
