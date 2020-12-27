@@ -32,7 +32,13 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "text-operation-ts",
+  "name": "text-operation",
+  "description": "text operation classes for rich text operational transformation",
+  "keywords": [
+    "ot",
+    "text-operation",
+    "operational-transformation"
+  ],
   "author": "Simon Tucker",
   "module": "dist/text-operation-ts.esm.js",
   "size-limit": [
