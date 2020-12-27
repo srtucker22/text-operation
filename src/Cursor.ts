@@ -1,4 +1,4 @@
-import { TextOperation } from ".";
+import { TextOperation } from '.';
 
 export default class Cursor {
   position: number;
@@ -13,13 +13,15 @@ export default class Cursor {
     this.selectionEnd = selectionEnd;
   }
 
-  static fromJSON(obj: {position: number; selectionEnd: number}) {
+  static fromJSON(obj: { position: number; selectionEnd: number }) {
     return new Cursor(obj.position, obj.selectionEnd);
   }
 
   equals(other: Cursor) {
-    return this.position === other.position &&
-      this.selectionEnd === other.selectionEnd;
+    return (
+      this.position === other.position &&
+      this.selectionEnd === other.selectionEnd
+    );
   }
 
   // Return the more current cursor information.
@@ -41,7 +43,9 @@ export default class Cursor {
           newIndex -= Math.min(index, ops[i].chars!);
           index -= ops[i].chars!;
         }
-        if (index < 0) { break; }
+        if (index < 0) {
+          break;
+        }
       }
       return newIndex;
     }

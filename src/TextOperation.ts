@@ -211,7 +211,7 @@ export default class TextOperation {
         i++;
         op = ops[i];
       }
-      
+
       if (typeof op === 'number') {
         if (op > 0) {
           o.retain(op, attributes);
